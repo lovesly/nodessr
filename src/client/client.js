@@ -3,4 +3,5 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import Home from './components/Home';
 
-ReactDOM.render(<Home />, document.querySelector('#app'));
+// hydrate??
+ReactDOM.hydrate(<Home />, document.querySelector('#app'));
