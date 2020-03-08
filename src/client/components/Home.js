@@ -8,8 +8,8 @@ const Home = () => {
     // well, apparently it's not working in this way
     return (
         [
-            <div>I'm the home component, { name }</div>,
-            <button onClick={() => setName('SLY')}>Click me</button>
+            <div key='key1'>I'm the home component, { name }</div>,
+            <button key="key2" onClick={() => setName('SLY')}>Click me</button>
         ]
     );
 };
