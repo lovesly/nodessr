@@ -1,3 +1,4 @@
+// import here? why can't we setup in webpack?
 import express from 'express';
 import render from './helpers/render';
 import createStore from './helpers/createStore';
@@ -20,3 +21,6 @@ app.listen(3000, () => {
 
 // follow up, after we've done the typescript learning, we could refactor this project
 // with typescript!
+// update babel to lastest
+
+// react-redux v7.1 starts to support hooks, provides several hook apis, refactor later!

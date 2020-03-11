@@ -12,14 +12,14 @@ class UsersList extends Component {
     }
 
     componentDidMount() {
-
+        this.props.fetchUsers();
     }
 
     // need to setup babel?
     renderUsers = () => {
         return this.props.users.map(user => (
             <li key={user.id}>
-                user.name
+                {user.name}
             </li>
         ));
     };
