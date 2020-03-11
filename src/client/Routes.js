@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Home from './components/Home';
+import UsersList from './components/UsersList';
 
 export default () => {
     return (
-        <div>
+        <React.Fragment>
             <Route exact path="/" component={Home} />
-            {/* <Route path="/h" component={() => 'Hi'} /> */}
-        </div>
+            <Route path="/users" component={UsersList} />
+        </React.Fragment>
     );
 };
