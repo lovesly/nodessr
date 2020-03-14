@@ -2,6 +2,9 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+
+import { renderRoutes } from 'react-router-config';
+
 import Routes from '../client/Routes';
 
 // 我有点不理解，这里为什么也要一个 router？
@@ -12,7 +15,7 @@ export default function(req, store) {
     const content = renderToString(
         <Provider store={store}>
             <StaticRouter location={req.path} context={{}}>
-                <Routes />
+                <div>{ renderRoutes(Routes) }</div>
             </StaticRouter>
         </Provider>
     );

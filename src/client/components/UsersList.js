@@ -12,7 +12,7 @@ class UsersList extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchUsers();
+        // this.props.fetchUsers();
     }
 
     // need to setup babel?
@@ -42,5 +42,11 @@ function mapStateToProps(state) {
     }
 }
 
+// 手动 dispatch？
+function loadData(store) {
+    return store.dispatch(fetchUsers());
+}
+
 // pass in action creators??
 export default connect(mapStateToProps, { fetchUsers })(UsersList);
+export { loadData };
