@@ -10,7 +10,8 @@ import Routes from './Routes';
 import reducers from './reducers/index';
 
 // what about redux-saga?
-const store = createStore(reducers, {}, applyMiddleware(thunk));
+const initState = window.INITIAL_STATE || {};
+const store = createStore(reducers, initState, applyMiddleware(thunk));
 
 const content = (
     <Provider store={store}>

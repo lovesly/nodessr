@@ -12,7 +12,9 @@ class UsersList extends Component {
     }
 
     componentDidMount() {
-        // this.props.fetchUsers();
+        // 问题是，如果从其他地方过来，也许 store 里没有 userData？
+        // 但是不注释，相当于重复请求。。。
+        this.props.fetchUsers();
     }
 
     // need to setup babel?
@@ -48,5 +50,7 @@ function loadData(store) {
 }
 
 // pass in action creators??
-export default connect(mapStateToProps, { fetchUsers })(UsersList);
-export { loadData };
+export default {
+    component: connect(mapStateToProps, { fetchUsers })(UsersList),
+    loadData,
+};

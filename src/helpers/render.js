@@ -2,8 +2,9 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-
 import { renderRoutes } from 'react-router-config';
+// escape characters
+import serialize from 'serialize-javascript';
 
 import Routes from '../client/Routes';
 
@@ -19,11 +20,15 @@ export default function(req, store) {
             </StaticRouter>
         </Provider>
     );
+    // 有点意思，这里 JSON.stringify 之后，页面里可以直接拿到对象而不是 string
     const html = `
         <html>
             <head></head>
             <body>
                 <div id="app">${content}</div>
+                <script>
+                    window.INITIAL_STATE = ${ serialize(store.getState()) }
+                </script>
                 <script src="bundle.js"></script>
             </body>
         </html>
