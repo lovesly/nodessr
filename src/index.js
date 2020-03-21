@@ -1,12 +1,20 @@
 // import here? why can't we setup in webpack?
 import express from 'express';
+import { matchRoutes } from 'react-router-config';
+import proxy from 'express-http-proxy';
 import render from './helpers/render';
 import createStore from './helpers/createStore';
-import { matchRoutes } from 'react-router-config';
 import Routes from './client/Routes';
 
 const app = express();
 
+// 如果 heroku 太慢，我想部署在本地呢？
+app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
+    proxyReqOptDecorator(opts) {
+        opts.header['x-forwarded-host'] = 'localhost:3000';
+        return opts;
+    }
+}));
 // interesting
 app.use(express.static('public'));
 
