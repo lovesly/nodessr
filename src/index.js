@@ -9,9 +9,9 @@ import Routes from './client/Routes';
 const app = express();
 
 // 如果 heroku 太慢，我想部署在本地呢？
-app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
+app.use('/api', proxy('https://react-ssr-api.herokuapp.com', {
     proxyReqOptDecorator(opts) {
-        opts.header['x-forwarded-host'] = 'localhost:3000';
+        opts.headers['x-forwarded-host'] = 'localhost:3000';
         return opts;
     }
 }));
@@ -19,7 +19,7 @@ app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
 app.use(express.static('public'));
 
 app.get('*', (req, res) => {
-    const store = createStore();
+    const store = createStore(req);
     // init and load data into the store
     console.log(req.path);
     // returns an array of promises
