@@ -21,7 +21,7 @@ app.use(express.static('public'));
 app.get('*', (req, res) => {
     const store = createStore(req);
     // init and load data into the store
-    console.log(req.path);
+    console.log('path: ', req.path);
     // returns an array of promises
     const promises = matchRoutes(Routes, req.path).map(({ route }) => {
         return route.loadData ? route.loadData(store) : null;
@@ -32,7 +32,7 @@ app.get('*', (req, res) => {
         console.log('result: ', result);
         res.send(render(req, store));
     }).catch(err => {
-        console.log(err);
+        console.log('error: ', err);
     });
 
 });
@@ -46,3 +46,9 @@ app.listen(3000, () => {
 // with typescript!
 // update babel to lastest
 // react-redux v7.1 starts to support hooks, provides several hook apis, refactor later!
+
+/**
+ * 有个问题，初次的时候，渲染的是服务端给的 string，然后服务端的 store 也挂在 window 上传给 client 端作为 store 的初始值
+ * 那么然后呢？什么时候 client 开始接管？渲染的内容变成 client 的东西呢？ 此时 服务端 的 store 之类的，哪些就不要了可以回收，哪些仍然在运行呢？
+ * 是说初始页面里，把 bundle.js 加载完，就开始由 bundle 里的 client 端代码接管？ 这里肯定还发生了点什么。为什么 html 不符 还会出问题，说明后面还是有些校验之类的东西。
+ */

@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
 import Header from './components/Header';
+import { fetchCurrentUser, fetchUsers } from './actions';
 
 const App = ({ route }) => {
   return (
@@ -11,6 +12,11 @@ const App = ({ route }) => {
   );
 };
 
+function loadData(store) {
+  return store.dispatch(fetchCurrentUser());
+}
+
 export default {
-  component: App
+  component: App,
+  loadData,
 };
