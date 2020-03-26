@@ -15,6 +15,14 @@ app.use('/api', proxy('https://react-ssr-api.herokuapp.com', {
         return opts;
     }
 }));
+
+// redirect to another place to login?
+// If I create an OAuth server, we could handle the authentication process all by ourselves right??
+// 暂时先这样，登录本身并不是 SSR 的一部分。
+// 后续研究一下，接入 github，或者 腾讯qq？，或者自己搭建一个 oAuth 服务？部署在另一个端口?
+app.use('/zauth', ()=> {
+    console.log('Handle auth by ourselves')
+});
 // interesting
 app.use(express.static('public'));
 

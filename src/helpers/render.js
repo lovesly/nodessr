@@ -23,7 +23,9 @@ export default function(req, store) {
     // 有点意思，这里 JSON.stringify 之后，页面里可以直接拿到对象而不是 string
     const html = `
         <html>
-            <head></head>
+            <head>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+            </head>
             <body>
                 <div id="app">${content}</div>
                 <script>

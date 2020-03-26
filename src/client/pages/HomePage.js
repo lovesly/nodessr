@@ -7,8 +7,11 @@ const Home = () => {
     const [name, setName] = useState('ZZZ');
     // well, apparently it's not working in this way
     return (
-        [
-            <div key='key1'>I'm the home component, { name }</div>,
+        [   
+            <div key='key1' className="center-align" style={{ marginTop: '200px' }}>
+                <h3>Welcome {name}</h3>
+                <div key='key1-2'>Check out these awesome features</div>
+            </div>,
             <button key="key2" onClick={() => setName('SLY')}>Click me</button>
         ]
     );

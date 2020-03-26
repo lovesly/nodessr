@@ -12,7 +12,6 @@ import reducers from './reducers/index';
 
 const axiosInstance = axios.create({
     baseURL: '/api',
-
 });
 // what about redux-saga?
 const initState = window.INITIAL_STATE || {};
