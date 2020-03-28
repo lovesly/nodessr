@@ -37,8 +37,14 @@ app.get('*', (req, res) => {
     
     // 还需要把这个 store 作为初始值传给 client 的 store，否则报错，两边的 html 对不上
     Promise.all(promises).then(result => {
-        console.log('result: ', result);
-        res.send(render(req, store));
+        const context = {};
+        // 这个背后肯定发生了什么，是 StaticRouter 背后做了什么工作吗？让 staticContext 的改变，放入了 context 里
+        const content = render(req, store, context);
+        console.log('=======================', context);
+        if (context.notFound) {
+            res.status(404);
+        }
+        res.send(content);
     }).catch(err => {
         console.log('error: ', err);
     });

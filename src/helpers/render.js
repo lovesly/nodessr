@@ -12,10 +12,11 @@ import Routes from '../client/Routes';
 // 按理说，当第一次render 后，其他的工作就交给 client 的 router 了吧？？
 // 这么写不报错，但是意味着 Provider 部分和 client 是一样的？？
 // 只不过 store 不一样？ 我是真看不懂
-export default function(req, store) {
+export default function(req, store, context) {
     const content = renderToString(
         <Provider store={store}>
-            <StaticRouter location={req.path} context={{}}>
+            {/* req.path 干嘛用的？ */}
+            <StaticRouter location={req.path} context={context}>
                 <div>{ renderRoutes(Routes) }</div>
             </StaticRouter>
         </Provider>

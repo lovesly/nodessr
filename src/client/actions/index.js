@@ -26,3 +26,7 @@ export const fetchCurrentUser = () => async (dispatch, getState, axiosInstance) 
         payload: res
     });
 };
+
+/**
+ * 搞个自己的 mock server 怎么样？研究一下。总不能还不如小肥臀吧。
+ */
