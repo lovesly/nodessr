@@ -2,6 +2,7 @@
 
 export const FETCH_USERS = 'fetch_users';
 export const FETCH_CURRENT_USERS = 'fetch_current_users';
+export const FETCH_ADMINS = 'fetch_admins';
 
 // why curry here?
 // passin axiosInstance with extraArguments...
@@ -30,3 +31,11 @@ export const fetchCurrentUser = () => async (dispatch, getState, axiosInstance) 
 /**
  * 搞个自己的 mock server 怎么样？研究一下。总不能还不如小肥臀吧。
  */
+
+export const fetchAdmins = () => async (dispatch, getState, axiosInstance) => {
+    const res = await axiosInstance.get('/admins');
+    dispatch({
+        type: FETCH_ADMINS,
+        payload: res
+    });
+};
